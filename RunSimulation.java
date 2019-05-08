@@ -10,9 +10,11 @@ public class RunSimulation {
 	 This class is sent the number of 
 	 */
 	public static void main(String[] args) {
-		int no_hydrogens = Integer.parseInt(args[0]);
-		int no_carbons = Integer.parseInt(args[1]);
+		//int no_hydrogens = Integer.parseInt(args[0]);
+		//int no_carbons = Integer.parseInt(args[1]);
 		
+		int no_hydrogens = 12, no_carbons = 3;
+
 		System.out.println("Starting simulation with "+no_hydrogens+" H and "+no_carbons + " C");
 		
 		Carbon[] carbons = new Carbon[no_carbons];

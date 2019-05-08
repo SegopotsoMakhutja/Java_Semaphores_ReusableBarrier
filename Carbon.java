@@ -18,7 +18,7 @@ public class Carbon extends Thread {
 			sharedMethane.mutex.acquire(); // mutex lock for one thread
 			sharedMethane.addCarbon(); // add carbon atom to the methane molecule
 
-			// check how many atoms at barrier
+			// check how many atoms at barrier, if 4 H atoms arrived release along with carbon
 			if (sharedMethane.getHydrogen() >= 4)
 			{
 				sharedMethane.hydrogensQ.release(4);
@@ -30,10 +30,12 @@ public class Carbon extends Thread {
 			{
 				sharedMethane.mutex.acquire(); // unlock mutex
 			}
+			
 			sharedMethane.carbonQ.acquire();
 			sharedMethane.bond("C" + this.id); // bond
 			sharedMethane.barrier.b_wait(); 
 			sharedMethane.mutex.release(); // unlock mutex
+
 		} catch (InterruptedException ex) { /* not handling this */ }
 		// System.out.println(" ");
 	}

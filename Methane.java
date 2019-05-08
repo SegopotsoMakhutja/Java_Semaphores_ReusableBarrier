@@ -7,8 +7,8 @@ public class Methane {
 	
 		public BarrierReusable barrier; // all atoms must be at the barrier
 		public Semaphore mutex;  // mutually exclusive access to bonding
-		public Semaphore carbonQ; //  
-		public Semaphore hydrogensQ;  //
+		public Semaphore carbonQ; // carbon queue 
+		public Semaphore hydrogensQ;  // hydrogen queue
 		
 		private int H; //counter for available hydrogens
 		private int C; //counter for available carbons
