@@ -1,8 +1,5 @@
 package molecule;
 
-import java.util.concurrent.Semaphore;
-import java.util.Random;
-
 public class Carbon extends Thread {
 
 	private static int carbonCounter = 0;
