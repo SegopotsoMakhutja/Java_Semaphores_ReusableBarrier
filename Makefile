@@ -1,34 +1,30 @@
-# Java MAKEFILE
-# Segopotso Makhutja
+# makefile for java
+# author: Segopotso Makhutja
+# date: april 2019
 
-JC		= javac
-JF		= -g
-VM		= java
+BINDIR 	= bin
+PACKDIR = molecule
+JAVAC 	= javac
+JFLAGS 	= -g -d $(BINDIR)
+VM 		= java
 MAIN	= RunSimulation
-PACKAGE	= molecule
 
-.SUFFIXES: .java .class
+# define general build rule for java sources
+.SUFFIXES:  .java  .class
 
-.java.class:
-	$(JC) $(JF) $*.java
+SOURCES=$(shell find $(PACKDIR) -name '*.java' -type f)
+CLASSES=$(SOURCES:$(PACKDIR)/%.java=$(BINDIR)/%.class)
 
-CLASSES=	Carbon.java\
-				Hydrogen.java\
-				Methane.java\
-				BarrierReusable.java\
-				RunSimulation.java
+$(BINDIR)/%.class:$(PACKDIR)/%.java
+	$(JAVAC)  $(JFLAGS) $<
 
-default: class_files
-
-class_files:$(CLASSES:.java=.class)
+all:$(CLASSES)
 
 def:
-	$(VM) $(MAIN)
+	$(VM) -cp $(BINDIR) $(PACKDIR).$(MAIN) 12 3
 
 run:
-	$(VM) $(PACKAGE)/$(MAIN) $(ARGS)
+	$(VM) -cp $(BINDIR) $(PACKDIR).$(MAIN) $(ARGS)
 
 clean:
-	rm -f *.class
-
-	
+	@rm -f  $(BINDIR)/$(PACKDIR)/*.class
